@@ -25,7 +25,7 @@
   },
   "analyze": true,
   "devDependencies": {
-    "node-ffi": "~0.5.7"
+    "ffi": "~1.2.6"
   },
   "license": "MIT",
   "engines": {
