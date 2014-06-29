@@ -6,8 +6,10 @@
 /**
  * Requires
  */
-var ffi = require("ffi");
+var ffi = require('ffi');
 
-var libmtp = new ffi.Library("./libmtp/src/libmtp.c", {
-
+var libmtp = new ffi.Library('./libmtp/src/libmtp.c', {
+    'LIBMTP_Init': [ 'void', [ ] ]
 });
+
+module.exports = libmtp;
