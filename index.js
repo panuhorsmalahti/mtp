@@ -7,3 +7,7 @@
  * Requires
  */
 var ffi = require("node-ffi");
+
+var libmtp = new ffi.Library("./libmtp/src/libmtp.c", {
+
+});
