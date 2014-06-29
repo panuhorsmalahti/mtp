@@ -156,6 +156,27 @@ var LIBMTP_mtpdevice_struct = new StructType({
 LIBMTP_mtpdevice_struct.defineProperty('next',
     ref.refType(LIBMTP_mtpdevice_struct));
 
+var LIBMTP_file_struct = new StructType({
+  /**< Unique item ID */
+  item_id: 'uint32',
+  /**< ID of parent folder */
+  parent_id: 'uint32',
+  /**< ID of storage holding this file */
+  storage_id: 'uint32',
+  /**< Filename of this file */
+  filename: charPtr,
+  /**< Size of file in bytes */
+  filesize: 'uint64',
+  /**< Date of last alteration of the file */
+  modificationdate: 'long',
+  /**< LIBMTP_filetype_t Filetype used for the current file */
+  filetype: 'int',
+  /**< Next file in list or NULL if last file */
+  // LIBMTP_file_t *next;
+});
+LIBMTP_file_struct.defineProperty('next',
+    ref.refType(LIBMTP_file_struct));
+
 var LIBMTP_raw_device_structPtr = ref.refType(LIBMTP_raw_device_struct);
 var LIBMTP_raw_device_structPtrPtr = ref.refType(LIBMTP_raw_device_structPtr);
 
@@ -199,5 +220,52 @@ mtp.LIBMTP_ERROR_NO_DEVICE_ATTACHED = 5;
 mtp.LIBMTP_ERROR_STORAGE_FULL = 6;
 mtp.LIBMTP_ERROR_CONNECTING = 7;
 mtp.LIBMTP_ERROR_CANCELLED = 8;
+
+// LIBMTP_filetype_t
+mtp.LIBMTP_FILETYPE_FOLDER = 0;
+mtp.LIBMTP_FILETYPE_WAV = 1;
+mtp.LIBMTP_FILETYPE_MP3 = 2;
+mtp.LIBMTP_FILETYPE_WMA = 3;
+mtp.LIBMTP_FILETYPE_OGG = 4;
+mtp.LIBMTP_FILETYPE_AUDIBLE = 5;
+mtp.LIBMTP_FILETYPE_MP4 = 6;
+mtp.LIBMTP_FILETYPE_UNDEF_AUDIO = 7;
+mtp.LIBMTP_FILETYPE_WMV = 8;
+mtp.LIBMTP_FILETYPE_AVI = 9;
+mtp.LIBMTP_FILETYPE_MPEG = 10;
+mtp.LIBMTP_FILETYPE_ASF = 11;
+mtp.LIBMTP_FILETYPE_QT = 12;
+mtp.LIBMTP_FILETYPE_UNDEF_VIDEO = 13;
+mtp.LIBMTP_FILETYPE_JPEG = 14;
+mtp.LIBMTP_FILETYPE_JFIF = 15;
+mtp.LIBMTP_FILETYPE_TIFF = 16;
+mtp.LIBMTP_FILETYPE_BMP = 17;
+mtp.LIBMTP_FILETYPE_GIF = 18;
+mtp.LIBMTP_FILETYPE_PICT = 19;
+mtp.LIBMTP_FILETYPE_PNG = 20;
+mtp.LIBMTP_FILETYPE_VCALENDAR1 = 21;
+mtp.LIBMTP_FILETYPE_VCALENDAR2 = 22;
+mtp.LIBMTP_FILETYPE_VCARD2 = 23;
+mtp.LIBMTP_FILETYPE_VCARD3 = 24;
+mtp.LIBMTP_FILETYPE_WINDOWSIMAGEFORMAT = 25;
+mtp.LIBMTP_FILETYPE_WINEXEC = 26;
+mtp.LIBMTP_FILETYPE_TEXT = 27;
+mtp.LIBMTP_FILETYPE_HTML = 28;
+mtp.LIBMTP_FILETYPE_FIRMWARE = 29;
+mtp.LIBMTP_FILETYPE_AAC = 30;
+mtp.LIBMTP_FILETYPE_MEDIACARD = 31;
+mtp.LIBMTP_FILETYPE_FLAC = 32;
+mtp.LIBMTP_FILETYPE_MP2 = 33;
+mtp.LIBMTP_FILETYPE_M4A = 34;
+mtp.LIBMTP_FILETYPE_DOC = 35;
+mtp.LIBMTP_FILETYPE_XML = 36;
+mtp.LIBMTP_FILETYPE_XLS = 37;
+mtp.LIBMTP_FILETYPE_PPT = 38;
+mtp.LIBMTP_FILETYPE_MHT = 39;
+mtp.LIBMTP_FILETYPE_JP2 = 40;
+mtp.LIBMTP_FILETYPE_JPX = 41;
+mtp.LIBMTP_FILETYPE_ALBUM = 42;
+mtp.LIBMTP_FILETYPE_PLAYLIST = 43;
+mtp.LIBMTP_FILETYPE_UNKNOWN = 44;
 
 module.exports = mtp;
