@@ -185,9 +185,10 @@ var LIBMTP_raw_device_structPtrPtr = ref.refType(LIBMTP_raw_device_structPtr);
  */
 var mtp = new ffi.Library('libmtp', {
     // 'Function name': [ 'return_type', [ 'param1', 'param2'] ]
-    'LIBMTP_Init': ['void', [ ]],
+    'LIBMTP_Init': ['void', [] ],
     'LIBMTP_Set_Debug': ['void', ['int']],
-    'LIBMTP_Detect_Raw_Devices': ['int', [LIBMTP_raw_device_structPtrPtr, intPtr]]
+    'LIBMTP_Detect_Raw_Devices': ['int', [LIBMTP_raw_device_structPtrPtr, intPtr]],
+    'LIBMTP_Open_Raw_Device': [ ref.refType(LIBMTP_mtpdevice_struct), [LIBMTP_raw_device_structPtr]]
 });
 
 // Apply structs

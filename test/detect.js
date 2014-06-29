@@ -5,7 +5,7 @@ var ref = require('ref');
 mtp.LIBMTP_Init();
 
 // Set debug
-mtp.LIBMTP_Set_Debug(mtp.LIBMTP_DEBUG_PTP | mtp.LIBMTP_DEBUG_DATA);
+// mtp.LIBMTP_Set_Debug(mtp.LIBMTP_DEBUG_PTP | mtp.LIBMTP_DEBUG_DATA);
 
 // Read raw devices
 var numrawdevices = ref.alloc('int');
@@ -43,5 +43,11 @@ switch (err) {
                         device.devnum);
             }
         }
+
+        var openDevice = mtp.LIBMTP_Open_Raw_Device(rawdevices.deref());
+        if (!openDevice) {
+          console.error('Unable to open raw device');
+        }
+
         break;
 };
