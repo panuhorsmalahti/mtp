@@ -1,7 +1,6 @@
 var mtp = require('../index.js');
 var ref = require('ref');
 
-
 // Init
 mtp.LIBMTP_Init();
 
@@ -37,12 +36,12 @@ switch (err) {
                     device.device_entry.product_id.toString(16) + ') bus ' +
                     device.bus_location + ', dev ' +
                     device.devnum);
-        } else {
-                console.log(device.device_entry.vendor_id.toString(16) + ':' +
-                    device.device_entry.product_id.toString(16) + ' bus ' +
-                    device.bus_location + ', dev ' +
-                    device.devnum);
+            } else {
+                    console.log(device.device_entry.vendor_id.toString(16) + ':' +
+                        device.device_entry.product_id.toString(16) + ' bus ' +
+                        device.bus_location + ', dev ' +
+                        device.devnum);
+            }
         }
-}
-break;
+        break;
 };
