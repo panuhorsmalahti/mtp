@@ -45,6 +45,10 @@ var libmtp = new ffi.Library('libmtp', {
     'LIBMTP_Detect_Raw_Devices': [ 'int', [ LIBMTP_raw_device_structPtrPtr, intPtr ] ]
 });
 
+// Apply structs
+libmtp.LIBMTP_device_entry_struct = LIBMTP_device_entry_struct;
+libmtp.LIBMTP_raw_device_struct = LIBMTP_raw_device_struct;
+
 /**
  * Constants
  */
