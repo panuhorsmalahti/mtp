@@ -19,6 +19,10 @@ var voidPtr = ref.refType('void');
 /**
  * Structs
  */
+
+/**
+ * A data structure to hold MTP device entries.
+ */
 var LIBMTP_device_entry_struct = new StructType({
     vendor: charPtr,
     /**< The vendor of this device */
@@ -31,6 +35,10 @@ var LIBMTP_device_entry_struct = new StructType({
     device_flags: 'uint32' /**< Bugs, device specifics etc */
 });
 
+/**
+ * A data structure to hold a raw MTP device connected
+ * to the bus.
+ */
 var LIBMTP_raw_device_struct = new StructType({
     'device_entry': LIBMTP_device_entry_struct,
     /**< The device entry for this raw device */
@@ -39,6 +47,9 @@ var LIBMTP_raw_device_struct = new StructType({
     'devnum': 'uint8' /**< Device number on the bus, if device available */
 });
 
+/**
+ * LIBMTP Device Storage structure
+ */
 var LIBMTP_devicestorage_struct = new StructType({
     /**< Unique ID for this storage */
     id: 'uint32',
@@ -68,6 +79,9 @@ LIBMTP_devicestorage_struct.defineProperty('next',
 LIBMTP_devicestorage_struct.defineProperty('prev',
     ref.refType(LIBMTP_devicestorage_struct));
 
+/**
+ * A data structure to hold errors from the library.
+ */
 var LIBMTP_error_struct = new StructType({
   errornumber: 'int',
   error_text: charPtr
@@ -76,6 +90,9 @@ var LIBMTP_error_struct = new StructType({
 LIBMTP_error_struct.defineProperty('next',
     ref.refType(LIBMTP_error_struct));
 
+/**
+ * MTP device extension holder struct
+ */
 var LIBMTP_device_extension_struct = new StructType({
   /**
    * Name of extension e.g. "foo.com"
@@ -98,6 +115,9 @@ var LIBMTP_device_extension_struct = new StructType({
 LIBMTP_device_extension_struct.defineProperty('next',
     ref.refType(LIBMTP_device_extension_struct));
 
+/**
+ * Main MTP device object struct
+ */
 var LIBMTP_mtpdevice_struct = new StructType({
     /**
      * Object bitsize, typically 32 or 64.
@@ -156,6 +176,9 @@ var LIBMTP_mtpdevice_struct = new StructType({
 LIBMTP_mtpdevice_struct.defineProperty('next',
     ref.refType(LIBMTP_mtpdevice_struct));
 
+/**
+ * MTP file struct
+ */
 var LIBMTP_file_struct = new StructType({
   /**< Unique item ID */
   item_id: 'uint32',
