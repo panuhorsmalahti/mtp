@@ -83,9 +83,9 @@ LIBMTP_devicestorage_struct.defineProperty('prev',
  * A data structure to hold errors from the library.
  */
 var LIBMTP_error_struct = new StructType({
-  errornumber: 'int',
-  error_text: charPtr
-  // next: ref.refType(LIBMTP_error_struct)
+    errornumber: 'int',
+    error_text: charPtr
+    // next: ref.refType(LIBMTP_error_struct)
 });
 LIBMTP_error_struct.defineProperty('next',
     ref.refType(LIBMTP_error_struct));
@@ -94,23 +94,23 @@ LIBMTP_error_struct.defineProperty('next',
  * MTP device extension holder struct
  */
 var LIBMTP_device_extension_struct = new StructType({
-  /**
-   * Name of extension e.g. "foo.com"
-   */
-  name: charPtr,
-  /**
-   * Major revision of extension
-   */
-  major: 'int',
-  /**
-   * Minor revision of extension
-   */
-  minor: 'int'
-  /**
-   * Pointer to the next extension or NULL if this is the
-   * last extension.
-   */
-  // next: ref.refType(LIBMTP_device_extension_struct)
+    /**
+     * Name of extension e.g. "foo.com"
+     */
+    name: charPtr,
+    /**
+     * Major revision of extension
+     */
+    major: 'int',
+    /**
+     * Minor revision of extension
+     */
+    minor: 'int'
+    /**
+     * Pointer to the next extension or NULL if this is the
+     * last extension.
+     */
+    // next: ref.refType(LIBMTP_device_extension_struct)
 });
 LIBMTP_device_extension_struct.defineProperty('next',
     ref.refType(LIBMTP_device_extension_struct));
@@ -180,22 +180,22 @@ LIBMTP_mtpdevice_struct.defineProperty('next',
  * MTP file struct
  */
 var LIBMTP_file_struct = new StructType({
-  /**< Unique item ID */
-  item_id: 'uint32',
-  /**< ID of parent folder */
-  parent_id: 'uint32',
-  /**< ID of storage holding this file */
-  storage_id: 'uint32',
-  /**< Filename of this file */
-  filename: charPtr,
-  /**< Size of file in bytes */
-  filesize: 'uint64',
-  /**< Date of last alteration of the file */
-  modificationdate: 'long',
-  /**< LIBMTP_filetype_t Filetype used for the current file */
-  filetype: 'int',
-  /**< Next file in list or NULL if last file */
-  // LIBMTP_file_t *next;
+    /**< Unique item ID */
+    item_id: 'uint32',
+    /**< ID of parent folder */
+    parent_id: 'uint32',
+    /**< ID of storage holding this file */
+    storage_id: 'uint32',
+    /**< Filename of this file */
+    filename: charPtr,
+    /**< Size of file in bytes */
+    filesize: 'uint64',
+    /**< Date of last alteration of the file */
+    modificationdate: 'long',
+    /**< LIBMTP_filetype_t Filetype used for the current file */
+    filetype: 'int'
+    /**< Next file in list or NULL if last file */
+    // LIBMTP_file_t *next;
 });
 LIBMTP_file_struct.defineProperty('next',
     ref.refType(LIBMTP_file_struct));
@@ -208,10 +208,10 @@ var LIBMTP_raw_device_structPtrPtr = ref.refType(LIBMTP_raw_device_structPtr);
  */
 var mtp = new ffi.Library('libmtp', {
     // 'Function name': [ 'return_type', [ 'param1', 'param2'] ]
-    'LIBMTP_Init': ['void', [] ],
+    'LIBMTP_Init': ['void', []],
     'LIBMTP_Set_Debug': ['void', ['int']],
     'LIBMTP_Detect_Raw_Devices': ['int', [LIBMTP_raw_device_structPtrPtr, intPtr]],
-    'LIBMTP_Open_Raw_Device': [ ref.refType(LIBMTP_mtpdevice_struct), [LIBMTP_raw_device_structPtr]]
+    'LIBMTP_Open_Raw_Device': [ref.refType(LIBMTP_mtpdevice_struct), [LIBMTP_raw_device_structPtr]]
 });
 
 // Apply structs
