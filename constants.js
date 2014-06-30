@@ -242,4 +242,21 @@ module.exports = function (mtp) {
     mtp.LIBMTP_PROPERTY_EncodingProfile = 165;
     mtp.LIBMTP_PROPERTY_BuyFlag = 166;
     mtp.LIBMTP_PROPERTY_UNKNOWN = 167;
+
+    // LIBMTP_datatype_t
+    mtp.LIBMTP_DATATYPE_INT8 = 0;
+    mtp.LIBMTP_DATATYPE_UINT8 = 1;
+    mtp.LIBMTP_DATATYPE_INT16 = 2;
+    mtp.LIBMTP_DATATYPE_UINT16 = 3;
+    mtp.LIBMTP_DATATYPE_INT32 = 4;
+    mtp.LIBMTP_DATATYPE_UINT32 = 5;
+    mtp.LIBMTP_DATATYPE_INT64 = 6;
+    mtp.LIBMTP_DATATYPE_UINT64 = 7;
+
+    // LIBMTP_event_t
+    mtp.LIBMTP_EVENT_NONE = 0;
+    mtp.LIBMTP_EVENT_STORE_ADDED = 1;
+    mtp.LIBMTP_EVENT_STORE_REMOVED = 2;
+    mtp.LIBMTP_EVENT_OBJECT_ADDED = 3;
+    mtp.LIBMTP_EVENT_OBJECT_REMOVED = 4;
 };
