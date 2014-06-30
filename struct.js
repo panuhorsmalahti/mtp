@@ -18,6 +18,15 @@ var intPtr = ref.refType('int');
 var charPtr = ref.refType('char');
 var voidPtr = ref.refType('void');
 
+var int8Ptr = ref.refType('int8');
+var uint8Ptr = ref.refType('uint8');
+var int16Ptr = ref.refType('int16');
+var uint16Ptr = ref.refType('uint16');
+var int32Ptr = ref.refType('int32');
+var uint32Ptr = ref.refType('uint32');
+var int64Ptr = ref.refType('int64');
+var uint64Ptr = ref.refType('uint64');
+
 /**
  * A data structure to hold MTP device entries.
  */
@@ -197,5 +206,78 @@ struct.LIBMTP_file_struct = new StructType({
 });
 struct.LIBMTP_file_struct.defineProperty('next',
     ref.refType(struct.LIBMTP_file_struct));
+
+/**
+ * A data structure to hold allowed ranges of values
+ */
+struct.LIBMTP_allowed_values_struct = new StructType({
+    u8max: 'uint8',
+    u8min: 'uint8',
+    u8step: 'uint8',
+    u8vals: uint8Ptr,
+    i8max: 'int8',
+    i8min: 'int8',
+    i8step: 'int8',
+    i8vals: int8Ptr,
+    u16max: 'uint16',
+    u16min: 'uint16',
+    u16step: 'uint16',
+    u16vals: uint16Ptr,
+    i16max: 'int16',
+    i16min: 'int16',
+    i16step: 'int16',
+    i16vals: int16Ptr,
+    u32max: 'uint32',
+    u32min: 'uint32',
+    u32step: 'uint32',
+    u32vals: uint32Ptr,
+    i32max: 'int32',
+    i32min: 'int32',
+    i32step: 'int32',
+    i32vals: int32Ptr,
+    u64max: 'uint64',
+    u64min: 'uint64',
+    u64step: 'uint64',
+    u64vals: uint64Ptr,
+    i64max: 'int64',
+    i64min: 'int64',
+    i64step: 'int64',
+    i64vals: int64Ptr,
+    /**
+    * Number of entries in the vals array
+    */
+    num_entries: 'int16',
+    /**
+    * The datatype specifying which of the above is used.
+    * LIBMTP_datatype_t
+    */
+    datatype: 'int',
+    /**
+    * Non zero for range, 0 for enum
+    */
+    is_range: 'int'
+});
+
+/**
+ * MTP Playlist structure
+ */
+struct.LIBMTP_playlist_struct = new StructType({
+    /**< Unique playlist ID */
+    playlist_id: 'uint32',
+    /**< ID of parent folder */
+    parent_id: 'uint32',
+    /**< ID of storage holding this playlist */
+    storage_id: 'uint32',
+    /**< Name of playlist */
+    name: charPtr,
+    /**< The tracks in this playlist */
+    tracks: uint32Ptr,
+    /**< The number of tracks in this playlist */
+    no_tracks: 'uint32'
+    /**< Next playlist or NULL if last playlist */
+    // LIBMTP_playlist_t *next; 
+});
+struct.LIBMTP_playlist_struct.defineProperty('next',
+    ref.refType(struct.LIBMTP_playlist_struct));
 
 module.exports = struct;
