@@ -280,4 +280,72 @@ struct.LIBMTP_playlist_struct = new StructType({
 struct.LIBMTP_playlist_struct.defineProperty('next',
     ref.refType(struct.LIBMTP_playlist_struct));
 
+/**
+ * MTP Album structure
+ */
+struct.LIBMTP_album_struct = new StructType({
+    /**< Unique playlist ID */
+    album_id: 'uint32',
+    /**< ID of parent folder */
+    parent_id: 'uint32',
+    /**< ID of storage holding this album */
+    storage_id: 'uint32',
+    /**< Name of album */
+    name: charPtr,
+    /**< Name of album artist */
+    artist: charPtr,
+    /**< Name of recording composer */
+    composer: charPtr,
+    /**< Genre of album */
+    genre: charPtr,
+    /**< The tracks in this album */
+    tracks: uint32Ptr,
+    /**< The number of tracks in this album */
+    no_tracks: 'uint32'
+    /**< Next album or NULL if last album */
+    // LIBMTP_album_t *next;
+});
+struct.LIBMTP_album_struct.defineProperty('next',
+    ref.refType(struct.LIBMTP_album_struct));
+
+/**
+ * MTP Folder structure
+ */
+struct.LIBMTP_folder_struct = new StructType({
+    /**< Unique folder ID */
+    folder_id: 'uint32',
+    /**< ID of parent folder */
+    parent_id: 'uint32',
+    /**< ID of storage holding this folder */
+    storage_id: 'uint32',
+    /**< Name of folder */
+    name: charPtr
+    /**< Next folder at same level or NULL if no more */
+    // LIBMTP_folder_t *sibling; 
+    /**< Child folder or NULL if no children */
+    // LIBMTP_folder_t *child;
+});
+struct.LIBMTP_folder_struct.defineProperty('sibling',
+    ref.refType(struct.LIBMTP_folder_struct));
+struct.LIBMTP_folder_struct.defineProperty('child',
+    ref.refType(struct.LIBMTP_folder_struct));
+
+/**
+ * LIBMTP Object RepresentativeSampleData Structure
+ */
+struct.LIBMTP_filesampledata_struct = new StructType({
+    /**< Width of sample if it is an image */
+    width: 'uint32',
+    /**< Height of sample if it is an image */
+    height: 'uint32',
+    /**< Duration in milliseconds if it is audio */
+    duration: 'uint32',
+    /**< LIBMTP_filetype_t Filetype used for the sample */
+    filetype: 'int',
+    /**< Size of sample data in bytes */
+    size: 'uint64',
+    /**< Sample data */
+    data: charPtr
+});
+
 module.exports = struct;
