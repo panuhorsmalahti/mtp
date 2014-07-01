@@ -21,7 +21,10 @@ var mtp = new ffi.Library('libmtp', {
     'LIBMTP_Init': ['void', []],
     'LIBMTP_Set_Debug': ['void', ['int']],
     'LIBMTP_Detect_Raw_Devices': ['int', [LIBMTP_raw_device_structPtrPtr, pointer.intPtr]],
-    'LIBMTP_Open_Raw_Device': [ref.refType(struct.LIBMTP_mtpdevice_struct), [LIBMTP_raw_device_structPtr]]
+    'LIBMTP_Open_Raw_Device': [ref.refType(struct.LIBMTP_mtpdevice_struct), [LIBMTP_raw_device_structPtr]],
+    'LIBMTP_Dump_Errorstack': ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Clear_Errorstack': ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Dump_Device_Info': ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]]
 });
 
 // Set structs

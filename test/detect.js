@@ -1,3 +1,5 @@
+/*jslint node:true */
+"use strict";
 var mtp = require('../index.js');
 var ref = require('ref');
 
@@ -8,12 +10,14 @@ mtp.LIBMTP_Init();
 // mtp.LIBMTP_Set_Debug(mtp.LIBMTP_DEBUG_PTP | mtp.LIBMTP_DEBUG_DATA);
 
 // Read raw devices
-var numrawdevices = ref.alloc('int');
-var rawdevices = ref.alloc(mtp.LIBMTP_raw_device_structPtr);
+var numrawdevices = ref.alloc('int'),
+    rawdevices = ref.alloc(mtp.LIBMTP_raw_device_structPtr),
 
-var err = mtp.LIBMTP_Detect_Raw_Devices(rawdevices, numrawdevices);
+    err = mtp.LIBMTP_Detect_Raw_Devices(rawdevices, numrawdevices),
+    device,
+    i;
 numrawdevices = numrawdevices.deref();
-var device;
+
 switch (err) {
     case mtp.LIBMTP_ERROR_NO_DEVICE_ATTACHED:
         console.log('No raw devices found.');
@@ -26,7 +30,7 @@ switch (err) {
         break;
     case mtp.LIBMTP_ERROR_NONE:
         console.log('Found ' + numrawdevices + ' devices');
-        for (var i = 0; i < numrawdevices; i++) {
+        for (i = 0; i < numrawdevices; i++) {
             // Deferencing twice because it's a Ptr
             device = rawdevices.deref().deref();
             if (device.device_entry.vendor || device.device_entry.product) {
@@ -37,17 +41,39 @@ switch (err) {
                     device.bus_location + ', dev ' +
                     device.devnum);
             } else {
-                    console.log(device.device_entry.vendor_id.toString(16) + ':' +
-                        device.device_entry.product_id.toString(16) + ' bus ' +
-                        device.bus_location + ', dev ' +
-                        device.devnum);
+                console.log(device.device_entry.vendor_id.toString(16) + ':' +
+                    device.device_entry.product_id.toString(16) + ' bus ' +
+                    device.bus_location + ', dev ' +
+                    device.devnum);
             }
         }
 
-        var openDevice = mtp.LIBMTP_Open_Raw_Device(rawdevices.deref());
-        if (!openDevice) {
-          console.error('Unable to open raw device');
+        console.log('Attempting to connect device(s)');
+
+        for (i = 0; i < numrawdevices; i++) {
+            (function() {
+                var files = ref.alloc(mtp.LIBMTP_file_struct),
+                    friendlyname = ref.alloc('char'),
+                    syncpartner = ref.alloc('char'),
+                    sectime = ref.alloc('char'),
+                    devcert = ref.alloc('char'),
+                    filetypes = ref.alloc('uint16'),
+                    filetypes_len,
+                    maxbattlevel,
+                    currbattlevel,
+                    ret,
+                    openDevice = mtp.LIBMTP_Open_Raw_Device(rawdevices.deref());
+
+                if (!openDevice) {
+                    console.error('Unable to open raw device');
+                    return;
+                }
+
+                mtp.LIBMTP_Dump_Errorstack(openDevice);
+                mtp.LIBMTP_Clear_Errorstack(openDevice);
+                mtp.LIBMTP_Dump_Device_Info(openDevice);
+            })();
         }
 
         break;
-};
+}
