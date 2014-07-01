@@ -52,6 +52,7 @@ switch (err) {
 
         for (i = 0; i < numrawdevices; i++) {
             (function() {
+                console.log('Opening device ' + i);
                 var files = ref.alloc(mtp.LIBMTP_file_struct),
                     friendlyname = ref.alloc('char'),
                     syncpartner = ref.alloc('char'),
@@ -61,8 +62,9 @@ switch (err) {
                     filetypes_len,
                     maxbattlevel,
                     currbattlevel,
-                    ret,
-                    openDevice = mtp.LIBMTP_Open_Raw_Device(rawdevices.deref());
+                    ret;
+                // TODO: This always opens the first device..
+                var openDevice = mtp.LIBMTP_Open_Raw_Device(rawdevices.deref());
 
                 if (!openDevice) {
                     console.error('Unable to open raw device');
