@@ -1,9 +1,12 @@
 /*jslint node:true */
-/*jslint nomen: true */
 "use strict";
 
+/**
+ * Require
+ */
 var ref = require('ref');
 var StructType = require('ref-struct');
+var pointer = require('./pointer');
 
 /**
  * Structs
@@ -12,30 +15,15 @@ var StructType = require('ref-struct');
 // Set all struct types to the struct object
 var struct = {};
 
-// Basic types
-// TODO: Move to a shared pointers module
-var intPtr = ref.refType('int');
-var charPtr = ref.refType('char');
-var voidPtr = ref.refType('void');
-
-var int8Ptr = ref.refType('int8');
-var uint8Ptr = ref.refType('uint8');
-var int16Ptr = ref.refType('int16');
-var uint16Ptr = ref.refType('uint16');
-var int32Ptr = ref.refType('int32');
-var uint32Ptr = ref.refType('uint32');
-var int64Ptr = ref.refType('int64');
-var uint64Ptr = ref.refType('uint64');
-
 /**
  * A data structure to hold MTP device entries.
  */
 struct.LIBMTP_device_entry_struct = new StructType({
-    vendor: charPtr,
+    vendor: pointer.charPtr,
     /**< The vendor of this device */
     vendor_id: 'uint16',
     /**< Vendor ID for this device */
-    product: charPtr,
+    product: pointer.charPtr,
     /**< The product name of this device */
     product_id: 'uint16',
     /**< Product ID for this device */
@@ -73,9 +61,9 @@ struct.LIBMTP_devicestorage_struct = new StructType({
     /**< Free space in objects */
     FreeSpaceInObjects: 'uint64',
     /**< A brief description of this storage */
-    StorageDescription: charPtr,
+    StorageDescription: pointer.charPtr,
     /**< A volume identifier */
-    VolumeIdentifier: charPtr
+    VolumeIdentifier: pointer.charPtr
     /**< Next storage, follow this link until NULL */
     // next: ref.refType(LIBMTP_devicestorage_struct),
     /**< Previous storage */
@@ -91,7 +79,7 @@ struct.LIBMTP_devicestorage_struct.defineProperty('prev',
  */
 struct.LIBMTP_error_struct = new StructType({
     errornumber: 'int',
-    error_text: charPtr
+    error_text: pointer.charPtr
     // next: ref.refType(LIBMTP_error_struct)
 });
 struct.LIBMTP_error_struct.defineProperty('next',
@@ -104,7 +92,7 @@ struct.LIBMTP_device_extension_struct = new StructType({
     /**
      * Name of extension e.g. "foo.com"
      */
-    name: charPtr,
+    name: pointer.charPtr,
     /**
      * Major revision of extension
      */
@@ -134,12 +122,12 @@ struct.LIBMTP_mtpdevice_struct = new StructType({
      * Parameters for this device, must be cast into
      * \c (PTPParams*) before internal use.
      */
-    params: voidPtr,
+    params: pointer.voidPtr,
     /**
      * USB device for this device, must be cast into
      * \c (PTP_USB*) before internal use.
      */
-    usbinfo: voidPtr,
+    usbinfo: pointer.voidPtr,
     /**
      * The storage for this device, do not use strings in here without
      * copying them first, and beware that this list may be rebuilt at
@@ -171,7 +159,7 @@ struct.LIBMTP_mtpdevice_struct = new StructType({
     /** Default Text folder */
     default_text_folder: 'uint32',
     /** Per device iconv() converters, only used internally */
-    cd: voidPtr,
+    cd: pointer.voidPtr,
     /** Extension list */
     extensions: ref.refType(struct.LIBMTP_device_extension_struct),
     /** Whether the device uses caching, only used internally */
@@ -194,7 +182,7 @@ struct.LIBMTP_file_struct = new StructType({
     /**< ID of storage holding this file */
     storage_id: 'uint32',
     /**< Filename of this file */
-    filename: charPtr,
+    filename: pointer.charPtr,
     /**< Size of file in bytes */
     filesize: 'uint64',
     /**< Date of last alteration of the file */
@@ -214,35 +202,35 @@ struct.LIBMTP_allowed_values_struct = new StructType({
     u8max: 'uint8',
     u8min: 'uint8',
     u8step: 'uint8',
-    u8vals: uint8Ptr,
+    u8vals: pointer.uint8Ptr,
     i8max: 'int8',
     i8min: 'int8',
     i8step: 'int8',
-    i8vals: int8Ptr,
+    i8vals: pointer.int8Ptr,
     u16max: 'uint16',
     u16min: 'uint16',
     u16step: 'uint16',
-    u16vals: uint16Ptr,
+    u16vals: pointer.uint16Ptr,
     i16max: 'int16',
     i16min: 'int16',
     i16step: 'int16',
-    i16vals: int16Ptr,
+    i16vals: pointer.int16Ptr,
     u32max: 'uint32',
     u32min: 'uint32',
     u32step: 'uint32',
-    u32vals: uint32Ptr,
+    u32vals: pointer.uint32Ptr,
     i32max: 'int32',
     i32min: 'int32',
     i32step: 'int32',
-    i32vals: int32Ptr,
+    i32vals: pointer.int32Ptr,
     u64max: 'uint64',
     u64min: 'uint64',
     u64step: 'uint64',
-    u64vals: uint64Ptr,
+    u64vals: pointer.uint64Ptr,
     i64max: 'int64',
     i64min: 'int64',
     i64step: 'int64',
-    i64vals: int64Ptr,
+    i64vals: pointer.int64Ptr,
     /**
     * Number of entries in the vals array
     */
@@ -269,9 +257,9 @@ struct.LIBMTP_playlist_struct = new StructType({
     /**< ID of storage holding this playlist */
     storage_id: 'uint32',
     /**< Name of playlist */
-    name: charPtr,
+    name: pointer.charPtr,
     /**< The tracks in this playlist */
-    tracks: uint32Ptr,
+    tracks: pointer.uint32Ptr,
     /**< The number of tracks in this playlist */
     no_tracks: 'uint32'
     /**< Next playlist or NULL if last playlist */
@@ -291,15 +279,15 @@ struct.LIBMTP_album_struct = new StructType({
     /**< ID of storage holding this album */
     storage_id: 'uint32',
     /**< Name of album */
-    name: charPtr,
+    name: pointer.charPtr,
     /**< Name of album artist */
-    artist: charPtr,
+    artist: pointer.charPtr,
     /**< Name of recording composer */
-    composer: charPtr,
+    composer: pointer.charPtr,
     /**< Genre of album */
-    genre: charPtr,
+    genre: pointer.charPtr,
     /**< The tracks in this album */
-    tracks: uint32Ptr,
+    tracks: pointer.uint32Ptr,
     /**< The number of tracks in this album */
     no_tracks: 'uint32'
     /**< Next album or NULL if last album */
@@ -319,7 +307,7 @@ struct.LIBMTP_folder_struct = new StructType({
     /**< ID of storage holding this folder */
     storage_id: 'uint32',
     /**< Name of folder */
-    name: charPtr
+    name: pointer.charPtr
     /**< Next folder at same level or NULL if no more */
     // LIBMTP_folder_t *sibling; 
     /**< Child folder or NULL if no children */
@@ -345,7 +333,7 @@ struct.LIBMTP_filesampledata_struct = new StructType({
     /**< Size of sample data in bytes */
     size: 'uint64',
     /**< Sample data */
-    data: charPtr
+    data: pointer.charPtr
 });
 
 module.exports = struct;
