@@ -73,7 +73,40 @@ switch (err) {
 
                 mtp.LIBMTP_Dump_Errorstack(openDevice);
                 mtp.LIBMTP_Clear_Errorstack(openDevice);
-                mtp.LIBMTP_Dump_Device_Info(openDevice);
+                // Commented out to prevent too many lines printd to the standard output
+                // mtp.LIBMTP_Dump_Device_Info(openDevice);
+
+                console.log('MTP-specific device properties:');
+                // The friendly name
+                var friendlyname = mtp.LIBMTP_Get_Friendlyname(openDevice).readCString(0);
+                if (!friendlyname) {
+                    console.log('   Friendly name: (NULL)');
+                } else {
+                    console.log('   Friendly name: ' + friendlyname);
+                }
+
+                // Sync partner
+                var syncpartner = mtp.LIBMTP_Get_Syncpartner(openDevice).readCString(0);
+                if (!syncpartner) {
+                    console.log('   Synchronization partner: (NULL)');
+                } else {
+                    console.log('   Synchronization partner: ' + friendlyname);
+                }
+
+                // Some battery info
+                var maxbattlevel = ref.alloc('int'),
+                    currbattlevel = ref.alloc('int'),
+                    ret = mtp.LIBMTP_Get_Batterylevel(openDevice, maxbattlevel, currbattlevel);
+                if (ret == 0) {
+                    maxbattlevel = maxbattlevel.deref();
+                    currbattlevel = currbattlevel.deref();
+                    console.log('   Battery level ' + currbattlevel + ' of ' + maxbattlevel + ' (' +
+                        (currbattlevel/maxbattlevel * 100) + '%)');
+                } else {
+                    // Silently ignore. Some devices does not support getting the
+                    // battery level.
+                    mtp.LIBMTP_Clear_Errorstack(openDevice);
+                }
             })();
         }
 
