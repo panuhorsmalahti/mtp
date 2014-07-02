@@ -94,10 +94,10 @@ switch (err) {
                 }
 
                 // Some battery info
-                var maxbattlevel = ref.alloc('int'),
-                    currbattlevel = ref.alloc('int'),
+                var maxbattlevel = ref.alloc('uint8'),
+                    currbattlevel = ref.alloc('uint8'),
                     ret = mtp.LIBMTP_Get_Batterylevel(openDevice, maxbattlevel, currbattlevel);
-                if (ret == 0) {
+                if (ret === 0) {
                     maxbattlevel = maxbattlevel.deref();
                     currbattlevel = currbattlevel.deref();
                     console.log('   Battery level ' + currbattlevel + ' of ' + maxbattlevel + ' (' +
@@ -106,6 +106,19 @@ switch (err) {
                     // Silently ignore. Some devices does not support getting the
                     // battery level.
                     mtp.LIBMTP_Clear_Errorstack(openDevice);
+                }
+
+                var filetypes = ref.alloc(ref.refType('uint16')),
+                    filetypes_len = ref.alloc('uint16');
+                ret = mtp.LIBMTP_Get_Supported_Filetypes(openDevice, filetypes, filetypes_len);
+                if (ret === 0) {
+                    console.log("libmtp supported (playable) filetypes:");
+                    for (i = 0; i < filetypes_len; i++) {
+                        // console.log("   " + LIBMTP_Get_Filetype_Description(filetypes[i]));
+                    }
+                } else {
+                    LIBMTP_Dump_Errorstack(openDevice);
+                    LIBMTP_Clear_Errorstack(openDevice);
                 }
             })();
         }
