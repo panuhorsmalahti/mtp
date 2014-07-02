@@ -32,7 +32,8 @@ var mtp = new ffi.Library('libmtp', {
     'LIBMTP_Get_Deviceversion': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     'LIBMTP_Get_Syncpartner': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     'LIBMTP_Get_Batterylevel': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint8Ptr, pointer.uint8Ptr]],
-    'LIBMTP_Get_Supported_Filetypes': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint16PtrPtr, pointer.uint16Ptr]]
+    'LIBMTP_Get_Supported_Filetypes': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint16PtrPtr, pointer.uint16Ptr]],
+    'LIBMTP_Get_Filetype_Description': [ pointer.charPtr, [ 'int' ]]
 });
 
 // Set structs

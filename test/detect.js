@@ -113,8 +113,9 @@ switch (err) {
                 ret = mtp.LIBMTP_Get_Supported_Filetypes(openDevice, filetypes, filetypes_len);
                 if (ret === 0) {
                     console.log("libmtp supported (playable) filetypes:");
-                    for (i = 0; i < filetypes_len; i++) {
-                        // console.log("   " + LIBMTP_Get_Filetype_Description(filetypes[i]));
+                    for (i = 0; i < filetypes_len.deref(); i++) {
+                        // TODO: Read filetypes array correctly
+                        console.log("   " + mtp.LIBMTP_Get_Filetype_Description(filetypes.deref().deref()).readCString(0));
                     }
                 } else {
                     LIBMTP_Dump_Errorstack(openDevice);
