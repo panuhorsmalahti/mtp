@@ -33,8 +33,11 @@ var mtp = new ffi.Library('libmtp', {
     'LIBMTP_Get_Syncpartner': [ 'string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     'LIBMTP_Get_Batterylevel': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint8Ptr, pointer.uint8Ptr]],
     'LIBMTP_Get_Supported_Filetypes': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint16PtrPtr, pointer.uint16Ptr]],
-    'LIBMTP_Get_Filetype_Description': [ 'string', [ 'int' ]]
+    'LIBMTP_Get_Filetype_Description': [ 'string', [ 'int' ]],
+    'LIBMTP_Get_Secure_Time': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), ref.refType('string') ]]
 });
+
+// int LIBMTP_Get_Secure_Time(LIBMTP_mtpdevice_t *, char ** const);
 
 // Set structs
 Object.keys(struct).forEach(function (structName) {

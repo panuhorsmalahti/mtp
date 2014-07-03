@@ -114,6 +114,7 @@ switch (err) {
                     mtp.LIBMTP_Clear_Errorstack(openDevice);
                 }
 
+                // Print support file types
                 var filetypes = ref.alloc(ref.refType('uint16')),
                     filetypes_len = ref.alloc('uint16');
                 ret = mtp.LIBMTP_Get_Supported_Filetypes(openDevice, filetypes, filetypes_len);
@@ -132,6 +133,17 @@ switch (err) {
                     LIBMTP_Dump_Errorstack(openDevice);
                     LIBMTP_Clear_Errorstack(openDevice);
                 }
+
+                // Secure time XML fragment
+                // Known bug: segfaults on Galaxy S5, commented out
+                /* var sectime;
+                ret = mtp.LIBMTP_Get_Secure_Time(openDevice, sectime);
+                if (ret === 0 && sectime) {
+                  console.log("Secure Time: " + sectime);
+                } else {
+                  // Silently ignore - there may be devices not supporting secure time.
+                  mtp.LIBMTP_Clear_Errorstack(openDevice);
+                } */
             })();
         }
 
