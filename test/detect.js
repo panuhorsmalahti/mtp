@@ -161,6 +161,9 @@ switch (err) {
                   LIBMTP_Dump_Errorstack(openDevice);
                   LIBMTP_Clear_Errorstack(openDevice);
                 } */
+
+                // Release device
+                mtp.LIBMTP_Release_Device(openDevice);
             })();
         }
 
