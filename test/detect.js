@@ -136,13 +136,30 @@ switch (err) {
 
                 // Secure time XML fragment
                 // Known bug: segfaults on Galaxy S5, commented out
-                /* var sectime;
+                /* var sectime = ref.alloc('string');
                 ret = mtp.LIBMTP_Get_Secure_Time(openDevice, sectime);
                 if (ret === 0 && sectime) {
-                  console.log("Secure Time: " + sectime);
+                  console.log("Secure Time: " + sectime.deref());
                 } else {
                   // Silently ignore - there may be devices not supporting secure time.
                   mtp.LIBMTP_Clear_Errorstack(openDevice);
+                } */
+
+                /*
+                 * This code is currently disabled: all devices say that
+                 * they support getting a device certificate but a lot of
+                 * them obviously doesn't, instead they crash when you try
+                 * to obtain it.
+                 */
+                /* var devcert = ref.alloc('string');
+                ret = mtp.LIBMTP_Get_Device_Certificate(openDevice, devcert);
+                if (ret === 0 && devcert) {
+                  console.log("Device Certificate: " + devcert.deref());
+                } else {
+                  console.log("Unable to acquire device certificate, perhaps this device " +
+                      "does not support this");
+                  LIBMTP_Dump_Errorstack(openDevice);
+                  LIBMTP_Clear_Errorstack(openDevice);
                 } */
             })();
         }
