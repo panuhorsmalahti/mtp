@@ -19,11 +19,11 @@ var struct = {};
  * A data structure to hold MTP device entries.
  */
 struct.LIBMTP_device_entry_struct = new StructType({
-    vendor: pointer.charPtr,
+    vendor: 'string',
     /**< The vendor of this device */
     vendor_id: 'uint16',
     /**< Vendor ID for this device */
-    product: pointer.charPtr,
+    product: 'string',
     /**< The product name of this device */
     product_id: 'uint16',
     /**< Product ID for this device */

@@ -34,8 +34,8 @@ switch (err) {
             // Deferencing twice because it's a Ptr
             device = rawdevices.deref().deref();
             if (device.device_entry.vendor || device.device_entry.product) {
-                console.log(device.device_entry.vendor.readCString(0) + ': ' +
-                    device.device_entry.product.readCString(0) + ' (' +
+                console.log(device.device_entry.vendor + ': ' +
+                    device.device_entry.product + ' (' +
                     device.device_entry.vendor_id.toString(16) + ':' +
                     device.device_entry.product_id.toString(16) + ') bus ' +
                     device.bus_location + ', dev ' +
