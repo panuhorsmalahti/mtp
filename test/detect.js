@@ -108,14 +108,18 @@ switch (err) {
                     mtp.LIBMTP_Clear_Errorstack(openDevice);
                 }
 
+                var uint16Ptr = ref.refType('uint16');
                 var filetypes = ref.alloc(ref.refType('uint16')),
                     filetypes_len = ref.alloc('uint16');
                 ret = mtp.LIBMTP_Get_Supported_Filetypes(openDevice, filetypes, filetypes_len);
                 if (ret === 0) {
                     console.log("libmtp supported (playable) filetypes:");
+                    var filetypes_all;
+                    
                     for (i = 0; i < filetypes_len.deref(); i++) {
-                        // TODO: Read filetypes array correctly
-                        console.log("   " + mtp.LIBMTP_Get_Filetype_Description(filetypes.deref().deref()).readCString(0));
+                        filetypes_all = ref.reinterpret(filetypes.deref(), filetypes_len.deref(), uint16Ptr.size * i);
+                        filetypes_all.type = 'uint16';
+                        console.log("   " + mtp.LIBMTP_Get_Filetype_Description(filetypes_all.deref()).readCString(0));
                     }
                 } else {
                     LIBMTP_Dump_Errorstack(openDevice);
