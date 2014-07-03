@@ -12,7 +12,7 @@ mtp.LIBMTP_Init();
 // Read raw devices
 var numrawdevices = ref.alloc('int'),
     rawdevices = ref.alloc(mtp.LIBMTP_raw_device_structPtr),
-
+    rawdevice,
     err = mtp.LIBMTP_Detect_Raw_Devices(rawdevices, numrawdevices),
     device,
     i;
@@ -31,8 +31,13 @@ switch (err) {
     case mtp.LIBMTP_ERROR_NONE:
         console.log('Found ' + numrawdevices + ' devices');
         for (i = 0; i < numrawdevices; i++) {
-            // Deferencing twice because it's a Ptr
-            device = rawdevices.deref().deref();
+            // Moving the buffer position to the device indexed by i in the array of raw_devices
+            rawdevice = ref.reinterpret(rawdevices.deref(), numrawdevices * mtp.LIBMTP_raw_device_struct.size,
+                        mtp.LIBMTP_raw_device_struct.size * i);
+            // Type must be set after reinterpret
+            rawdevice.type = mtp.LIBMTP_raw_device_struct;
+            // Creating a device struct object from the rawdevice buffer
+            device = new mtp.LIBMTP_raw_device_struct(rawdevice);
             if (device.device_entry.vendor || device.device_entry.product) {
                 console.log(device.device_entry.vendor + ': ' +
                     device.device_entry.product + ' (' +
@@ -63,8 +68,9 @@ switch (err) {
                     maxbattlevel,
                     currbattlevel,
                     ret;
-                // TODO: This always opens the first device..
-                var openDevice = mtp.LIBMTP_Open_Raw_Device(rawdevices.deref());
+
+                // Open a connection to the device
+                var openDevice = mtp.LIBMTP_Open_Raw_Device(rawdevice);
 
                 if (!openDevice) {
                     console.error('Unable to open raw device');
@@ -108,7 +114,6 @@ switch (err) {
                     mtp.LIBMTP_Clear_Errorstack(openDevice);
                 }
 
-                var uint16Ptr = ref.refType('uint16');
                 var filetypes = ref.alloc(ref.refType('uint16')),
                     filetypes_len = ref.alloc('uint16');
                 ret = mtp.LIBMTP_Get_Supported_Filetypes(openDevice, filetypes, filetypes_len);
@@ -116,8 +121,10 @@ switch (err) {
                     console.log("libmtp supported (playable) filetypes:");
                     var filetypes_all;
                     
-                    for (i = 0; i < filetypes_len.deref(); i++) {
-                        filetypes_all = ref.reinterpret(filetypes.deref(), filetypes_len.deref(), uint16Ptr.size * i);
+                    for (var t = 0; t < filetypes_len.deref(); t++) {
+                        // Reinterpet returns a new buffer pointing to the correct offset in the filetypes array
+                        filetypes_all = ref.reinterpret(filetypes.deref(), filetypes_len.deref(), mtp.uint16Ptr.size * t);
+                        // Type must be manually set after ref.reinterpret
                         filetypes_all.type = 'uint16';
                         console.log("   " + mtp.LIBMTP_Get_Filetype_Description(filetypes_all.deref()));
                     }
