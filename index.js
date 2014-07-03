@@ -25,15 +25,15 @@ var mtp = new ffi.Library('libmtp', {
     'LIBMTP_Dump_Errorstack': ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     'LIBMTP_Clear_Errorstack': ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     'LIBMTP_Dump_Device_Info': ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
-    'LIBMTP_Get_Friendlyname': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
-    'LIBMTP_Get_Manufacturername': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
-    'LIBMTP_Get_Modelname': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
-    'LIBMTP_Get_Serialnumber': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
-    'LIBMTP_Get_Deviceversion': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
-    'LIBMTP_Get_Syncpartner': [ pointer.charPtr, [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Get_Friendlyname': [ 'string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Get_Manufacturername': [ 'string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Get_Modelname': [ 'string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Get_Serialnumber': [ 'string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Get_Deviceversion': [ 'string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Get_Syncpartner': [ 'string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     'LIBMTP_Get_Batterylevel': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint8Ptr, pointer.uint8Ptr]],
     'LIBMTP_Get_Supported_Filetypes': [ 'int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint16PtrPtr, pointer.uint16Ptr]],
-    'LIBMTP_Get_Filetype_Description': [ pointer.charPtr, [ 'int' ]]
+    'LIBMTP_Get_Filetype_Description': [ 'string', [ 'int' ]]
 });
 
 // Set structs

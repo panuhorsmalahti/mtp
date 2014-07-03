@@ -78,7 +78,7 @@ switch (err) {
 
                 console.log('MTP-specific device properties:');
                 // The friendly name
-                var friendlyname = mtp.LIBMTP_Get_Friendlyname(openDevice).readCString(0);
+                var friendlyname = mtp.LIBMTP_Get_Friendlyname(openDevice);
                 if (!friendlyname) {
                     console.log('   Friendly name: (NULL)');
                 } else {
@@ -86,7 +86,7 @@ switch (err) {
                 }
 
                 // Sync partner
-                var syncpartner = mtp.LIBMTP_Get_Syncpartner(openDevice).readCString(0);
+                var syncpartner = mtp.LIBMTP_Get_Syncpartner(openDevice);
                 if (!syncpartner) {
                     console.log('   Synchronization partner: (NULL)');
                 } else {
@@ -119,7 +119,7 @@ switch (err) {
                     for (i = 0; i < filetypes_len.deref(); i++) {
                         filetypes_all = ref.reinterpret(filetypes.deref(), filetypes_len.deref(), uint16Ptr.size * i);
                         filetypes_all.type = 'uint16';
-                        console.log("   " + mtp.LIBMTP_Get_Filetype_Description(filetypes_all.deref()).readCString(0));
+                        console.log("   " + mtp.LIBMTP_Get_Filetype_Description(filetypes_all.deref()));
                     }
                 } else {
                     LIBMTP_Dump_Errorstack(openDevice);
