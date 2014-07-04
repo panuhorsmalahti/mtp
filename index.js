@@ -14,6 +14,17 @@ var LIBMTP_raw_device_structPtr = ref.refType(struct.LIBMTP_raw_device_struct);
 var LIBMTP_raw_device_structPtrPtr = ref.refType(LIBMTP_raw_device_structPtr);
 
 /**
+ * The callback type definition. Notice that a progress percentage ratio
+ * is easy to calculate by dividing <code>sent</code> by
+ * <code>total</code>.
+ * @param sent the number of bytes sent so far
+ * @param total the total number of bytes to send
+ * @param data a user-defined dereferencable pointer
+ * @return if anything else than 0 is returned, the current transfer will be interrupted / cancelled.
+ */
+var LIBMTP_progressfunc_t = ffi.Function('int', ['uint64', 'uint64', ref.refType('void')]);
+
+/**
  * libmtp definition
  */
 var mtp = new ffi.Library('libmtp', {
@@ -58,7 +69,7 @@ var mtp = new ffi.Library('libmtp', {
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {void}
      */
-    'LIBMTP_Clear_Errorstack': 
+    'LIBMTP_Clear_Errorstack':
         ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Dump_Device_Info'
@@ -142,7 +153,7 @@ var mtp = new ffi.Library('libmtp', {
      * @returns {int}
      */
     'LIBMTP_Get_Secure_Time':
-        ['int',[ref.refType(struct.LIBMTP_mtpdevice_struct), ref.refType('string') ]],
+        ['int', [ref.refType(struct.LIBMTP_mtpdevice_struct), ref.refType('string') ]],
     /**
      * LIBMTP_Get_Device_Certificate
      * @param {LIBMTP_mtpdevice_structPtr}
@@ -157,7 +168,10 @@ var mtp = new ffi.Library('libmtp', {
      * @returns {void}
      */
     'LIBMTP_Release_Device':
-        ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]]
+        ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    'LIBMTP_Get_Filelisting_With_Callback':
+        [ref.refType(struct.LIBMTP_file_struct),
+            [ref.refType(struct.LIBMTP_mtpdevice_struct), LIBMTP_progressfunc_t, ref.refType('void')]]
 });
 
 // Set structs

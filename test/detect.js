@@ -162,6 +162,23 @@ switch (err) {
                   LIBMTP_Clear_Errorstack(openDevice);
                 } */
 
+                // Try to get Media player device info XML file...
+                var totalProgress = 0;
+                var progressFunc = function (sent, total, data) {
+                    if ((sent/total) - totalProgress > 0.15) {
+                        console.log('Filelist progress ' + Math.round(sent/total * 100) + '%');
+                        totalProgress = sent/total;
+                    }
+                    // if anything else than 0 is returned, the current transfer will be interrupted / cancelled.
+                    return 0;
+                };
+
+                files = mtp.LIBMTP_Get_Filelisting_With_Callback(openDevice, progressFunc, null);
+                if (files) {
+                    var file = files.deref();
+                    console.log('File ' + file.filename);
+                }
+
                 // Release device
                 mtp.LIBMTP_Release_Device(openDevice);
             })();
