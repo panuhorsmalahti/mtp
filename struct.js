@@ -61,9 +61,9 @@ struct.LIBMTP_devicestorage_struct = new StructType({
     /**< Free space in objects */
     FreeSpaceInObjects: 'uint64',
     /**< A brief description of this storage */
-    StorageDescription: pointer.charPtr,
+    StorageDescription: 'string',
     /**< A volume identifier */
-    VolumeIdentifier: pointer.charPtr
+    VolumeIdentifier: 'string'
     /**< Next storage, follow this link until NULL */
     // next: ref.refType(LIBMTP_devicestorage_struct),
     /**< Previous storage */
@@ -79,7 +79,7 @@ struct.LIBMTP_devicestorage_struct.defineProperty('prev',
  */
 struct.LIBMTP_error_struct = new StructType({
     errornumber: 'int',
-    error_text: pointer.charPtr
+    error_text: 'string'
     // next: ref.refType(LIBMTP_error_struct)
 });
 struct.LIBMTP_error_struct.defineProperty('next',
@@ -92,7 +92,7 @@ struct.LIBMTP_device_extension_struct = new StructType({
     /**
      * Name of extension e.g. "foo.com"
      */
-    name: pointer.charPtr,
+    name: 'string',
     /**
      * Major revision of extension
      */
@@ -182,7 +182,7 @@ struct.LIBMTP_file_struct = new StructType({
     /**< ID of storage holding this file */
     storage_id: 'uint32',
     /**< Filename of this file */
-    filename: pointer.charPtr,
+    filename: 'string',
     /**< Size of file in bytes */
     filesize: 'uint64',
     /**< Date of last alteration of the file */
@@ -257,7 +257,7 @@ struct.LIBMTP_playlist_struct = new StructType({
     /**< ID of storage holding this playlist */
     storage_id: 'uint32',
     /**< Name of playlist */
-    name: pointer.charPtr,
+    name: 'string',
     /**< The tracks in this playlist */
     tracks: pointer.uint32Ptr,
     /**< The number of tracks in this playlist */
@@ -279,13 +279,13 @@ struct.LIBMTP_album_struct = new StructType({
     /**< ID of storage holding this album */
     storage_id: 'uint32',
     /**< Name of album */
-    name: pointer.charPtr,
+    name: 'string',
     /**< Name of album artist */
-    artist: pointer.charPtr,
+    artist: 'string',
     /**< Name of recording composer */
-    composer: pointer.charPtr,
+    composer: 'string',
     /**< Genre of album */
-    genre: pointer.charPtr,
+    genre: 'string',
     /**< The tracks in this album */
     tracks: pointer.uint32Ptr,
     /**< The number of tracks in this album */
@@ -307,7 +307,7 @@ struct.LIBMTP_folder_struct = new StructType({
     /**< ID of storage holding this folder */
     storage_id: 'uint32',
     /**< Name of folder */
-    name: pointer.charPtr
+    name: 'string'
     /**< Next folder at same level or NULL if no more */
     // LIBMTP_folder_t *sibling; 
     /**< Child folder or NULL if no children */

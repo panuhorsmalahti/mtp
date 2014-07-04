@@ -165,7 +165,7 @@ switch (err) {
                 // Try to get Media player device info XML file...
                 var totalProgress = 0;
                 var progressFunc = function (sent, total, data) {
-                    if ((sent/total) - totalProgress > 0.15) {
+                    if ((sent/total) - totalProgress > 0.20) {
                         console.log('Filelist progress ' + Math.round(sent/total * 100) + '%');
                         totalProgress = sent/total;
                     }
@@ -174,9 +174,10 @@ switch (err) {
                 };
 
                 files = mtp.LIBMTP_Get_Filelisting_With_Callback(openDevice, progressFunc, null);
-                if (files) {
+                while (files) {
                     var file = files.deref();
                     console.log('File ' + file.filename);
+                    files = file.next;
                 }
 
                 // Release device
