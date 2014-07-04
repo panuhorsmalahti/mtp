@@ -176,7 +176,13 @@ switch (err) {
                 files = mtp.LIBMTP_Get_Filelisting_With_Callback(openDevice, progressFunc, null);
                 while (files) {
                     var file = files.deref();
-                    console.log('File ' + file.filename);
+                    if (file.filename === 'WMPInfo.xml' ||
+                        file.filename === 'WMPinfo.xml' ||
+                        file.filename === 'default-capabilities.xml') {
+                        if (file.item_id !== 0) {
+                            
+                        }
+                    }
                     files = file.next;
                 }
 
@@ -185,5 +191,6 @@ switch (err) {
             })();
         }
 
+        console.log("Ok.");
         break;
 }

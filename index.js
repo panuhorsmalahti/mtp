@@ -169,9 +169,28 @@ var mtp = new ffi.Library('libmtp', {
      */
     'LIBMTP_Release_Device':
         ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
+    /**
+     * LIBMTP_Get_Filelisting_With_Callback
+     * @param {LIBMTP_mtpdevice_structPtr}
+     * @param {LIBMTP_progressfunc_t}
+     * @param {voidPtr}
+     * @returns {LIBMTP_file_structPtr}
+     */
     'LIBMTP_Get_Filelisting_With_Callback':
         [ref.refType(struct.LIBMTP_file_struct),
-            [ref.refType(struct.LIBMTP_mtpdevice_struct), LIBMTP_progressfunc_t, ref.refType('void')]]
+            [ref.refType(struct.LIBMTP_mtpdevice_struct), LIBMTP_progressfunc_t, ref.refType('void')]],
+    /**
+     * LIBMTP_Get_Track_To_File_Descriptor
+     * @param {LIBMTP_mtpdevice_structPtr}
+     * @param {uint32}
+     * @param {int}
+     * @param {LIBMTP_progressfunc_t}
+     * @param {voidPtr}
+     * @returns {int}
+     */
+    'LIBMTP_Get_Track_To_File_Descriptor':
+        ['int',
+            [ref.refType(struct.LIBMTP_mtpdevice_struct), 'uint32', 'int', LIBMTP_progressfunc_t, ref.refType('void')]]
 });
 
 // Set structs
