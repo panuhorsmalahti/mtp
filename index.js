@@ -1,9 +1,11 @@
+/** 
+ * Media transfer protocol module for Node.js
+ * @module mtp
+ */
 /*jslint node:true */
 'use strict';
 
-/**
- * Require
- */
+// Require
 var ffi = require('ffi');
 var ref = require('ref');
 var struct = require('./struct');
@@ -17,26 +19,27 @@ var LIBMTP_raw_device_structPtrPtr = ref.refType(LIBMTP_raw_device_structPtr);
  * The callback type definition. Notice that a progress percentage ratio
  * is easy to calculate by dividing <code>sent</code> by
  * <code>total</code>.
- * @param sent the number of bytes sent so far
- * @param total the total number of bytes to send
- * @param data a user-defined dereferencable pointer
- * @return if anything else than 0 is returned, the current transfer will be interrupted / cancelled.
+ * @method
+ * @param {uint64} sent the number of bytes sent so far
+ * @param {uint64} total the total number of bytes to send
+ * @param {voidPtr} data a user-defined dereferencable pointer
+ * @return {int} if anything else than 0 is returned, the current transfer will be interrupted / cancelled.
  */
 var LIBMTP_progressfunc_t = ffi.Function('int', ['uint64', 'uint64', ref.refType('void')]);
 
-/**
- * libmtp definition
- */
+// libmtp definition
 var mtp = new ffi.Library('libmtp', {
     // 'Function name': [ 'return_type', [ 'param1', 'param2'] ]
     /**
      * LIBMTP_Init
+     * @method
      * @returns {void}
      */
     'LIBMTP_Init':
         ['void', []],
     /**
      * LIBMTP_Set_Debug
+     * @method
      * @param {int}
      * @returns {void}
      */
@@ -44,6 +47,7 @@ var mtp = new ffi.Library('libmtp', {
         ['void', ['int']],
     /**
      * LIBMTP_Detect_Raw_Devices
+     * @method
      * @param {LIBMTP_raw_device_structPtrPtr}
      * @param {intPtr}
      * @returns {int}
@@ -52,6 +56,7 @@ var mtp = new ffi.Library('libmtp', {
         ['int', [LIBMTP_raw_device_structPtrPtr, pointer.intPtr]],
     /**
      * LIBMTP_Open_Raw_Device
+     * @method
      * @param {LIBMTP_raw_device_structPtr}
      * @returns {LIBMTP_mtpdevice_structPtr}
      */
@@ -59,6 +64,7 @@ var mtp = new ffi.Library('libmtp', {
         [ref.refType(struct.LIBMTP_mtpdevice_struct), [LIBMTP_raw_device_structPtr]],
     /**
      * LIBMTP_Dump_Errorstack
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {void}
      */
@@ -66,6 +72,7 @@ var mtp = new ffi.Library('libmtp', {
         ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Clear_Errorstack
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {void}
      */
@@ -73,6 +80,7 @@ var mtp = new ffi.Library('libmtp', {
         ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Dump_Device_Info'
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {void}
      */
@@ -80,6 +88,7 @@ var mtp = new ffi.Library('libmtp', {
         ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Friendlyname
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {string}
      */
@@ -87,6 +96,7 @@ var mtp = new ffi.Library('libmtp', {
         ['string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Manufacturername
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {string}
      */
@@ -94,6 +104,7 @@ var mtp = new ffi.Library('libmtp', {
         ['string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Modelname
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {string}
      */
@@ -101,6 +112,7 @@ var mtp = new ffi.Library('libmtp', {
         ['string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Serialnumber
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {string}
      */
@@ -108,6 +120,7 @@ var mtp = new ffi.Library('libmtp', {
         ['string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Deviceversion
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {string}
      */
@@ -115,6 +128,7 @@ var mtp = new ffi.Library('libmtp', {
         ['string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Syncpartner
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {string}
      */
@@ -122,6 +136,7 @@ var mtp = new ffi.Library('libmtp', {
         ['string', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Batterylevel
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @param {uint8Ptr}
      * @param {uint8Ptr}
@@ -131,6 +146,7 @@ var mtp = new ffi.Library('libmtp', {
         ['int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint8Ptr, pointer.uint8Ptr]],
     /**
      * LIBMTP_Get_Supported_Filetypes
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @param {uint16PtrPtr}
      * @param {uint16Ptr}
@@ -140,6 +156,7 @@ var mtp = new ffi.Library('libmtp', {
         ['int', [ref.refType(struct.LIBMTP_mtpdevice_struct), pointer.uint16PtrPtr, pointer.uint16Ptr]],
     /**
      * LIBMTP_Get_Filetype_Description
+     * @method
      * @param {int}
      * @returns {string}
      */
@@ -148,6 +165,7 @@ var mtp = new ffi.Library('libmtp', {
     /**
      * LIBMTP_Get_Secure_Time
      * Crashes Samsung Galaxy S5.
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @param {stringPtr}
      * @returns {int}
@@ -156,6 +174,7 @@ var mtp = new ffi.Library('libmtp', {
         ['int', [ref.refType(struct.LIBMTP_mtpdevice_struct), ref.refType('string') ]],
     /**
      * LIBMTP_Get_Device_Certificate
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @param {stringPtr}
      * @returns {int}
@@ -164,6 +183,7 @@ var mtp = new ffi.Library('libmtp', {
         ['int', [ref.refType(struct.LIBMTP_mtpdevice_struct), ref.refType('string')]],
     /**
      * LIBMTP_Release_Device
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @returns {void}
      */
@@ -171,6 +191,7 @@ var mtp = new ffi.Library('libmtp', {
         ['void', [ref.refType(struct.LIBMTP_mtpdevice_struct)]],
     /**
      * LIBMTP_Get_Filelisting_With_Callback
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @param {LIBMTP_progressfunc_t}
      * @param {voidPtr}
@@ -181,6 +202,7 @@ var mtp = new ffi.Library('libmtp', {
             [ref.refType(struct.LIBMTP_mtpdevice_struct), LIBMTP_progressfunc_t, ref.refType('void')]],
     /**
      * LIBMTP_Get_Track_To_File_Descriptor
+     * @method
      * @param {LIBMTP_mtpdevice_structPtr}
      * @param {uint32}
      * @param {int}

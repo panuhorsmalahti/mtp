@@ -1,33 +1,40 @@
+/** 
+ * mtp struct types
+ * @module mtp
+ */
 /*jslint node:true */
 "use strict";
 
-/**
- * Require
- */
+// Require
 var ref = require('ref');
 var StructType = require('ref-struct');
 var pointer = require('./pointer');
 
-/**
- * Structs
- */
+// Structs
 
 // Set all struct types to the struct object
 var struct = {};
 
 /**
  * A data structure to hold MTP device entries.
+ * @typedef LIBMTP_device_entry_struct
+ * @type {object}
+ * @property {string} vendor - The vendor of this device
+ * @property {uint16} vendor_id - Vendor ID for this device
+ * @property {string} product - The product name of this device
+ * @property {uint16} product_id - Product ID for this device
+ * @property {uint32} device_flags - Bugs, device specifics etc
+ */
+/** 
+ * LIBMTP_device_entry_struct
+ * @type {LIBMTP_device_entry_struct}
  */
 struct.LIBMTP_device_entry_struct = new StructType({
     vendor: 'string',
-    /**< The vendor of this device */
     vendor_id: 'uint16',
-    /**< Vendor ID for this device */
     product: 'string',
-    /**< The product name of this device */
     product_id: 'uint16',
-    /**< Product ID for this device */
-    device_flags: 'uint32' /**< Bugs, device specifics etc */
+    device_flags: 'uint32'
 });
 
 /**
@@ -36,37 +43,37 @@ struct.LIBMTP_device_entry_struct = new StructType({
  */
 struct.LIBMTP_raw_device_struct = new StructType({
     'device_entry': struct.LIBMTP_device_entry_struct,
-    /**< The device entry for this raw device */
+    //  The device entry for this raw device */
     'bus_location': 'uint32',
-    /**< Location of the bus, if device available */
-    'devnum': 'uint8' /**< Device number on the bus, if device available */
+    //  Location of the bus, if device available */
+    'devnum': 'uint8' //  Device number on the bus, if device available */
 });
 
 /**
  * LIBMTP Device Storage structure
  */
 struct.LIBMTP_devicestorage_struct = new StructType({
-    /**< Unique ID for this storage */
+    //  Unique ID for this storage */
     id: 'uint32',
-    /**< Storage type */
+    //  Storage type */
     StorageType: 'uint16',
-    /**< Filesystem type */
+    //  Filesystem type */
     FilesystemType: 'uint16',
-    /**< Access capability */
+    //  Access capability */
     AccessCapability: 'uint16',
-    /**< Maximum capability */
+    //  Maximum capability */
     MaxCapacity: 'uint64',
-    /**< Free space in bytes */
+    //  Free space in bytes */
     FreeSpaceInBytes: 'uint64',
-    /**< Free space in objects */
+    //  Free space in objects */
     FreeSpaceInObjects: 'uint64',
-    /**< A brief description of this storage */
+    //  A brief description of this storage */
     StorageDescription: 'string',
-    /**< A volume identifier */
+    //  A volume identifier */
     VolumeIdentifier: 'string'
-    /**< Next storage, follow this link until NULL */
+    //  Next storage, follow this link until NULL */
     // next: ref.refType(LIBMTP_devicestorage_struct),
-    /**< Previous storage */
+    //  Previous storage */
     // prev: ref.refType(LIBMTP_devicestorage_struct)
 });
 struct.LIBMTP_devicestorage_struct.defineProperty('next',
@@ -175,21 +182,21 @@ struct.LIBMTP_mtpdevice_struct.defineProperty('next',
  * MTP file struct
  */
 struct.LIBMTP_file_struct = new StructType({
-    /**< Unique item ID */
+    //  Unique item ID */
     item_id: 'uint32',
-    /**< ID of parent folder */
+    //  ID of parent folder */
     parent_id: 'uint32',
-    /**< ID of storage holding this file */
+    //  ID of storage holding this file */
     storage_id: 'uint32',
-    /**< Filename of this file */
+    //  Filename of this file */
     filename: 'string',
-    /**< Size of file in bytes */
+    //  Size of file in bytes */
     filesize: 'uint64',
-    /**< Date of last alteration of the file */
+    //  Date of last alteration of the file */
     modificationdate: 'long',
-    /**< LIBMTP_filetype_t Filetype used for the current file */
+    //  LIBMTP_filetype_t Filetype used for the current file */
     filetype: 'int'
-    /**< Next file in list or NULL if last file */
+    //  Next file in list or NULL if last file */
     // LIBMTP_file_t *next;
 });
 struct.LIBMTP_file_struct.defineProperty('next',
@@ -250,19 +257,19 @@ struct.LIBMTP_allowed_values_struct = new StructType({
  * MTP Playlist structure
  */
 struct.LIBMTP_playlist_struct = new StructType({
-    /**< Unique playlist ID */
+    //  Unique playlist ID */
     playlist_id: 'uint32',
-    /**< ID of parent folder */
+    //  ID of parent folder */
     parent_id: 'uint32',
-    /**< ID of storage holding this playlist */
+    //  ID of storage holding this playlist */
     storage_id: 'uint32',
-    /**< Name of playlist */
+    //  Name of playlist */
     name: 'string',
-    /**< The tracks in this playlist */
+    //  The tracks in this playlist */
     tracks: pointer.uint32Ptr,
-    /**< The number of tracks in this playlist */
+    //  The number of tracks in this playlist */
     no_tracks: 'uint32'
-    /**< Next playlist or NULL if last playlist */
+    //  Next playlist or NULL if last playlist */
     // LIBMTP_playlist_t *next; 
 });
 struct.LIBMTP_playlist_struct.defineProperty('next',
@@ -272,25 +279,25 @@ struct.LIBMTP_playlist_struct.defineProperty('next',
  * MTP Album structure
  */
 struct.LIBMTP_album_struct = new StructType({
-    /**< Unique playlist ID */
+    //  Unique playlist ID */
     album_id: 'uint32',
-    /**< ID of parent folder */
+    //  ID of parent folder */
     parent_id: 'uint32',
-    /**< ID of storage holding this album */
+    //  ID of storage holding this album */
     storage_id: 'uint32',
-    /**< Name of album */
+    //  Name of album */
     name: 'string',
-    /**< Name of album artist */
+    //  Name of album artist */
     artist: 'string',
-    /**< Name of recording composer */
+    //  Name of recording composer */
     composer: 'string',
-    /**< Genre of album */
+    //  Genre of album */
     genre: 'string',
-    /**< The tracks in this album */
+    //  The tracks in this album */
     tracks: pointer.uint32Ptr,
-    /**< The number of tracks in this album */
+    //  The number of tracks in this album */
     no_tracks: 'uint32'
-    /**< Next album or NULL if last album */
+    //  Next album or NULL if last album */
     // LIBMTP_album_t *next;
 });
 struct.LIBMTP_album_struct.defineProperty('next',
@@ -300,17 +307,17 @@ struct.LIBMTP_album_struct.defineProperty('next',
  * MTP Folder structure
  */
 struct.LIBMTP_folder_struct = new StructType({
-    /**< Unique folder ID */
+    //  Unique folder ID */
     folder_id: 'uint32',
-    /**< ID of parent folder */
+    //  ID of parent folder */
     parent_id: 'uint32',
-    /**< ID of storage holding this folder */
+    //  ID of storage holding this folder */
     storage_id: 'uint32',
-    /**< Name of folder */
+    //  Name of folder */
     name: 'string'
-    /**< Next folder at same level or NULL if no more */
+    //  Next folder at same level or NULL if no more */
     // LIBMTP_folder_t *sibling; 
-    /**< Child folder or NULL if no children */
+    //  Child folder or NULL if no children */
     // LIBMTP_folder_t *child;
 });
 struct.LIBMTP_folder_struct.defineProperty('sibling',
@@ -322,17 +329,17 @@ struct.LIBMTP_folder_struct.defineProperty('child',
  * LIBMTP Object RepresentativeSampleData Structure
  */
 struct.LIBMTP_filesampledata_struct = new StructType({
-    /**< Width of sample if it is an image */
+    //  Width of sample if it is an image */
     width: 'uint32',
-    /**< Height of sample if it is an image */
+    //  Height of sample if it is an image */
     height: 'uint32',
-    /**< Duration in milliseconds if it is audio */
+    //  Duration in milliseconds if it is audio */
     duration: 'uint32',
-    /**< LIBMTP_filetype_t Filetype used for the sample */
+    //  LIBMTP_filetype_t Filetype used for the sample */
     filetype: 'int',
-    /**< Size of sample data in bytes */
+    //  Size of sample data in bytes */
     size: 'uint64',
-    /**< Sample data */
+    //  Sample data */
     data: pointer.charPtr
 });
 
