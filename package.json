@@ -26,7 +26,10 @@
     "ref-struct": "~0.0.6"
   },
   "analyze": true,
-  "devDependencies": {},
+  "devDependencies": {
+    "gulp": "~3.8.5",
+    "gulp-jsdoc": "~0.1.4"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=0.10"

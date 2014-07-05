@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: constants.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: constants.js</h1>
+
+    
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*jslint node:true */
+/*jslint nomen: true */
+"use strict";
+
+/**
+ * Constants
+ */
+
+module.exports = function (mtp) {
+    // LIBMTP_Set_Debug
+    mtp.LIBMTP_DEBUG_NONE = 0x00;
+    mtp.LIBMTP_DEBUG_PTP = 0x01;
+    mtp.LIBMTP_DEBUG_PLST = 0x02;
+    mtp.LIBMTP_DEBUG_USB = 0x04;
+    mtp.LIBMTP_DEBUG_DATA = 0x08;
+    mtp.LIBMTP_DEBUG_ALL = 0xFF;
+
+    // LIBMTP_error_number_t
+    mtp.LIBMTP_ERROR_NONE = 0;
+    mtp.LIBMTP_ERROR_GENERAL = 1;
+    mtp.LIBMTP_ERROR_PTP_LAYER = 2;
+    mtp.LIBMTP_ERROR_USB_LAYER = 3;
+    mtp.LIBMTP_ERROR_MEMORY_ALLOCATION = 4;
+    mtp.LIBMTP_ERROR_NO_DEVICE_ATTACHED = 5;
+    mtp.LIBMTP_ERROR_STORAGE_FULL = 6;
+    mtp.LIBMTP_ERROR_CONNECTING = 7;
+    mtp.LIBMTP_ERROR_CANCELLED = 8;
+
+    // LIBMTP_filetype_t
+    mtp.LIBMTP_FILETYPE_FOLDER = 0;
+    mtp.LIBMTP_FILETYPE_WAV = 1;
+    mtp.LIBMTP_FILETYPE_MP3 = 2;
+    mtp.LIBMTP_FILETYPE_WMA = 3;
+    mtp.LIBMTP_FILETYPE_OGG = 4;
+    mtp.LIBMTP_FILETYPE_AUDIBLE = 5;
+    mtp.LIBMTP_FILETYPE_MP4 = 6;
+    mtp.LIBMTP_FILETYPE_UNDEF_AUDIO = 7;
+    mtp.LIBMTP_FILETYPE_WMV = 8;
+    mtp.LIBMTP_FILETYPE_AVI = 9;
+    mtp.LIBMTP_FILETYPE_MPEG = 10;
+    mtp.LIBMTP_FILETYPE_ASF = 11;
+    mtp.LIBMTP_FILETYPE_QT = 12;
+    mtp.LIBMTP_FILETYPE_UNDEF_VIDEO = 13;
+    mtp.LIBMTP_FILETYPE_JPEG = 14;
+    mtp.LIBMTP_FILETYPE_JFIF = 15;
+    mtp.LIBMTP_FILETYPE_TIFF = 16;
+    mtp.LIBMTP_FILETYPE_BMP = 17;
+    mtp.LIBMTP_FILETYPE_GIF = 18;
+    mtp.LIBMTP_FILETYPE_PICT = 19;
+    mtp.LIBMTP_FILETYPE_PNG = 20;
+    mtp.LIBMTP_FILETYPE_VCALENDAR1 = 21;
+    mtp.LIBMTP_FILETYPE_VCALENDAR2 = 22;
+    mtp.LIBMTP_FILETYPE_VCARD2 = 23;
+    mtp.LIBMTP_FILETYPE_VCARD3 = 24;
+    mtp.LIBMTP_FILETYPE_WINDOWSIMAGEFORMAT = 25;
+    mtp.LIBMTP_FILETYPE_WINEXEC = 26;
+    mtp.LIBMTP_FILETYPE_TEXT = 27;
+    mtp.LIBMTP_FILETYPE_HTML = 28;
+    mtp.LIBMTP_FILETYPE_FIRMWARE = 29;
+    mtp.LIBMTP_FILETYPE_AAC = 30;
+    mtp.LIBMTP_FILETYPE_MEDIACARD = 31;
+    mtp.LIBMTP_FILETYPE_FLAC = 32;
+    mtp.LIBMTP_FILETYPE_MP2 = 33;
+    mtp.LIBMTP_FILETYPE_M4A = 34;
+    mtp.LIBMTP_FILETYPE_DOC = 35;
+    mtp.LIBMTP_FILETYPE_XML = 36;
+    mtp.LIBMTP_FILETYPE_XLS = 37;
+    mtp.LIBMTP_FILETYPE_PPT = 38;
+    mtp.LIBMTP_FILETYPE_MHT = 39;
+    mtp.LIBMTP_FILETYPE_JP2 = 40;
+    mtp.LIBMTP_FILETYPE_JPX = 41;
+    mtp.LIBMTP_FILETYPE_ALBUM = 42;
+    mtp.LIBMTP_FILETYPE_PLAYLIST = 43;
+    mtp.LIBMTP_FILETYPE_UNKNOWN = 44;
+
+    // LIBMTP_property_t
+    mtp.LIBMTP_PROPERTY_StorageID = 0;
+    mtp.LIBMTP_PROPERTY_ObjectFormat = 1;
+    mtp.LIBMTP_PROPERTY_ProtectionStatus = 2;
+    mtp.LIBMTP_PROPERTY_ObjectSize = 3;
+    mtp.LIBMTP_PROPERTY_AssociationType = 4;
+    mtp.LIBMTP_PROPERTY_AssociationDesc = 5;
+    mtp.LIBMTP_PROPERTY_ObjectFileName = 6;
+    mtp.LIBMTP_PROPERTY_DateCreated = 7;
+    mtp.LIBMTP_PROPERTY_DateModified = 8;
+    mtp.LIBMTP_PROPERTY_Keywords = 9;
+    mtp.LIBMTP_PROPERTY_ParentObject = 10;
+    mtp.LIBMTP_PROPERTY_AllowedFolderContents = 11;
+    mtp.LIBMTP_PROPERTY_Hidden = 12;
+    mtp.LIBMTP_PROPERTY_SystemObject = 13;
+    mtp.LIBMTP_PROPERTY_PersistantUniqueObjectIdentifier = 14;
+    mtp.LIBMTP_PROPERTY_SyncID = 15;
+    mtp.LIBMTP_PROPERTY_PropertyBag = 16;
+    mtp.LIBMTP_PROPERTY_Name = 17;
+    mtp.LIBMTP_PROPERTY_CreatedBy = 18;
+    mtp.LIBMTP_PROPERTY_Artist = 19;
+    mtp.LIBMTP_PROPERTY_DateAuthored = 20;
+    mtp.LIBMTP_PROPERTY_Description = 21;
+    mtp.LIBMTP_PROPERTY_URLReference = 22;
+    mtp.LIBMTP_PROPERTY_LanguageLocale = 23;
+    mtp.LIBMTP_PROPERTY_CopyrightInformation = 24;
+    mtp.LIBMTP_PROPERTY_Source = 25;
+    mtp.LIBMTP_PROPERTY_OriginLocation = 26;
+    mtp.LIBMTP_PROPERTY_DateAdded = 27;
+    mtp.LIBMTP_PROPERTY_NonConsumable = 28;
+    mtp.LIBMTP_PROPERTY_CorruptOrUnplayable = 29;
+    mtp.LIBMTP_PROPERTY_ProducerSerialNumber = 30;
+    mtp.LIBMTP_PROPERTY_RepresentativeSampleFormat = 31;
+    mtp.LIBMTP_PROPERTY_RepresentativeSampleSize = 32;
+    mtp.LIBMTP_PROPERTY_RepresentativeSampleHeight = 33;
+    mtp.LIBMTP_PROPERTY_RepresentativeSampleWidth = 34;
+    mtp.LIBMTP_PROPERTY_RepresentativeSampleDuration = 35;
+    mtp.LIBMTP_PROPERTY_RepresentativeSampleData = 36;
+    mtp.LIBMTP_PROPERTY_Width = 37;
+    mtp.LIBMTP_PROPERTY_Height = 38;
+    mtp.LIBMTP_PROPERTY_Duration = 39;
+    mtp.LIBMTP_PROPERTY_Rating = 40;
+    mtp.LIBMTP_PROPERTY_Track = 41;
+    mtp.LIBMTP_PROPERTY_Genre = 42;
+    mtp.LIBMTP_PROPERTY_Credits = 43;
+    mtp.LIBMTP_PROPERTY_Lyrics = 44;
+    mtp.LIBMTP_PROPERTY_SubscriptionContentID = 45;
+    mtp.LIBMTP_PROPERTY_ProducedBy = 46;
+    mtp.LIBMTP_PROPERTY_UseCount = 47;
+    mtp.LIBMTP_PROPERTY_SkipCount = 48;
+    mtp.LIBMTP_PROPERTY_LastAccessed = 49;
+    mtp.LIBMTP_PROPERTY_ParentalRating = 50;
+    mtp.LIBMTP_PROPERTY_MetaGenre = 51;
+    mtp.LIBMTP_PROPERTY_Composer = 52;
+    mtp.LIBMTP_PROPERTY_EffectiveRating = 53;
+    mtp.LIBMTP_PROPERTY_Subtitle = 54;
+    mtp.LIBMTP_PROPERTY_OriginalReleaseDate = 55;
+    mtp.LIBMTP_PROPERTY_AlbumName = 56;
+    mtp.LIBMTP_PROPERTY_AlbumArtist = 57;
+    mtp.LIBMTP_PROPERTY_Mood = 58;
+    mtp.LIBMTP_PROPERTY_DRMStatus = 59;
+    mtp.LIBMTP_PROPERTY_SubDescription = 60;
+    mtp.LIBMTP_PROPERTY_IsCropped = 61;
+    mtp.LIBMTP_PROPERTY_IsColorCorrected = 62;
+    mtp.LIBMTP_PROPERTY_ImageBitDepth = 63;
+    mtp.LIBMTP_PROPERTY_Fnumber = 64;
+    mtp.LIBMTP_PROPERTY_ExposureTime = 65;
+    mtp.LIBMTP_PROPERTY_ExposureIndex = 66;
+    mtp.LIBMTP_PROPERTY_DisplayName = 67;
+    mtp.LIBMTP_PROPERTY_BodyText = 68;
+    mtp.LIBMTP_PROPERTY_Subject = 69;
+    mtp.LIBMTP_PROPERTY_Priority = 70;
+    mtp.LIBMTP_PROPERTY_GivenName = 71;
+    mtp.LIBMTP_PROPERTY_MiddleNames = 72;
+    mtp.LIBMTP_PROPERTY_FamilyName = 73;
+    mtp.LIBMTP_PROPERTY_Prefix = 74;
+    mtp.LIBMTP_PROPERTY_Suffix = 75;
+    mtp.LIBMTP_PROPERTY_PhoneticGivenName = 76;
+    mtp.LIBMTP_PROPERTY_PhoneticFamilyName = 77;
+    mtp.LIBMTP_PROPERTY_EmailPrimary = 78;
+    mtp.LIBMTP_PROPERTY_EmailPersonal1 = 79;
+    mtp.LIBMTP_PROPERTY_EmailPersonal2 = 80;
+    mtp.LIBMTP_PROPERTY_EmailBusiness1 = 81;
+    mtp.LIBMTP_PROPERTY_EmailBusiness2 = 82;
+    mtp.LIBMTP_PROPERTY_EmailOthers = 83;
+    mtp.LIBMTP_PROPERTY_PhoneNumberPrimary = 84;
+    mtp.LIBMTP_PROPERTY_PhoneNumberPersonal = 85;
+    mtp.LIBMTP_PROPERTY_PhoneNumberPersonal2 = 86;
+    mtp.LIBMTP_PROPERTY_PhoneNumberBusiness = 87;
+    mtp.LIBMTP_PROPERTY_PhoneNumberBusiness2 = 88;
+    mtp.LIBMTP_PROPERTY_PhoneNumberMobile = 89;
+    mtp.LIBMTP_PROPERTY_PhoneNumberMobile2 = 90;
+    mtp.LIBMTP_PROPERTY_FaxNumberPrimary = 91;
+    mtp.LIBMTP_PROPERTY_FaxNumberPersonal = 92;
+    mtp.LIBMTP_PROPERTY_FaxNumberBusiness = 93;
+    mtp.LIBMTP_PROPERTY_PagerNumber = 94;
+    mtp.LIBMTP_PROPERTY_PhoneNumberOthers = 95;
+    mtp.LIBMTP_PROPERTY_PrimaryWebAddress = 96;
+    mtp.LIBMTP_PROPERTY_PersonalWebAddress = 97;
+    mtp.LIBMTP_PROPERTY_BusinessWebAddress = 98;
+    mtp.LIBMTP_PROPERTY_InstantMessengerAddress = 99;
+    mtp.LIBMTP_PROPERTY_InstantMessengerAddress2 = 100;
+    mtp.LIBMTP_PROPERTY_InstantMessengerAddress3 = 101;
+    mtp.LIBMTP_PROPERTY_PostalAddressPersonalFull = 102;
+    mtp.LIBMTP_PROPERTY_PostalAddressPersonalFullLine1 = 103;
+    mtp.LIBMTP_PROPERTY_PostalAddressPersonalFullLine2 = 104;
+    mtp.LIBMTP_PROPERTY_PostalAddressPersonalFullCity = 105;
+    mtp.LIBMTP_PROPERTY_PostalAddressPersonalFullRegion = 106;
+    mtp.LIBMTP_PROPERTY_PostalAddressPersonalFullPostalCode = 107;
+    mtp.LIBMTP_PROPERTY_PostalAddressPersonalFullCountry = 108;
+    mtp.LIBMTP_PROPERTY_PostalAddressBusinessFull = 109;
+    mtp.LIBMTP_PROPERTY_PostalAddressBusinessLine1 = 110;
+    mtp.LIBMTP_PROPERTY_PostalAddressBusinessLine2 = 111;
+    mtp.LIBMTP_PROPERTY_PostalAddressBusinessCity = 112;
+    mtp.LIBMTP_PROPERTY_PostalAddressBusinessRegion = 113;
+    mtp.LIBMTP_PROPERTY_PostalAddressBusinessPostalCode = 114;
+    mtp.LIBMTP_PROPERTY_PostalAddressBusinessCountry = 115;
+    mtp.LIBMTP_PROPERTY_PostalAddressOtherFull = 116;
+    mtp.LIBMTP_PROPERTY_PostalAddressOtherLine1 = 117;
+    mtp.LIBMTP_PROPERTY_PostalAddressOtherLine2 = 118;
+    mtp.LIBMTP_PROPERTY_PostalAddressOtherCity = 119;
+    mtp.LIBMTP_PROPERTY_PostalAddressOtherRegion = 120;
+    mtp.LIBMTP_PROPERTY_PostalAddressOtherPostalCode = 121;
+    mtp.LIBMTP_PROPERTY_PostalAddressOtherCountry = 122;
+    mtp.LIBMTP_PROPERTY_OrganizationName = 123;
+    mtp.LIBMTP_PROPERTY_PhoneticOrganizationName = 124;
+    mtp.LIBMTP_PROPERTY_Role = 125;
+    mtp.LIBMTP_PROPERTY_Birthdate = 126;
+    mtp.LIBMTP_PROPERTY_MessageTo = 127;
+    mtp.LIBMTP_PROPERTY_MessageCC = 128;
+    mtp.LIBMTP_PROPERTY_MessageBCC = 129;
+    mtp.LIBMTP_PROPERTY_MessageRead = 130;
+    mtp.LIBMTP_PROPERTY_MessageReceivedTime = 131;
+    mtp.LIBMTP_PROPERTY_MessageSender = 132;
+    mtp.LIBMTP_PROPERTY_ActivityBeginTime = 133;
+    mtp.LIBMTP_PROPERTY_ActivityEndTime = 134;
+    mtp.LIBMTP_PROPERTY_ActivityLocation = 135;
+    mtp.LIBMTP_PROPERTY_ActivityRequiredAttendees = 136;
+    mtp.LIBMTP_PROPERTY_ActivityOptionalAttendees = 137;
+    mtp.LIBMTP_PROPERTY_ActivityResources = 138;
+    mtp.LIBMTP_PROPERTY_ActivityAccepted = 139;
+    mtp.LIBMTP_PROPERTY_Owner = 140;
+    mtp.LIBMTP_PROPERTY_Editor = 141;
+    mtp.LIBMTP_PROPERTY_Webmaster = 142;
+    mtp.LIBMTP_PROPERTY_URLSource = 143;
+    mtp.LIBMTP_PROPERTY_URLDestination = 144;
+    mtp.LIBMTP_PROPERTY_TimeBookmark = 145;
+    mtp.LIBMTP_PROPERTY_ObjectBookmark = 146;
+    mtp.LIBMTP_PROPERTY_ByteBookmark = 147;
+    mtp.LIBMTP_PROPERTY_LastBuildDate = 148;
+    mtp.LIBMTP_PROPERTY_TimetoLive = 149;
+    mtp.LIBMTP_PROPERTY_MediaGUID = 150;
+    mtp.LIBMTP_PROPERTY_TotalBitRate = 151;
+    mtp.LIBMTP_PROPERTY_BitRateType = 152;
+    mtp.LIBMTP_PROPERTY_SampleRate = 153;
+    mtp.LIBMTP_PROPERTY_NumberOfChannels = 154;
+    mtp.LIBMTP_PROPERTY_AudioBitDepth = 155;
+    mtp.LIBMTP_PROPERTY_ScanDepth = 156;
+    mtp.LIBMTP_PROPERTY_AudioWAVECodec = 157;
+    mtp.LIBMTP_PROPERTY_AudioBitRate = 158;
+    mtp.LIBMTP_PROPERTY_VideoFourCCCodec = 159;
+    mtp.LIBMTP_PROPERTY_VideoBitRate = 160;
+    mtp.LIBMTP_PROPERTY_FramesPerThousandSeconds = 161;
+    mtp.LIBMTP_PROPERTY_KeyFrameDistance = 162;
+    mtp.LIBMTP_PROPERTY_BufferSize = 163;
+    mtp.LIBMTP_PROPERTY_EncodingQuality = 164;
+    mtp.LIBMTP_PROPERTY_EncodingProfile = 165;
+    mtp.LIBMTP_PROPERTY_BuyFlag = 166;
+    mtp.LIBMTP_PROPERTY_UNKNOWN = 167;
+
+    // LIBMTP_datatype_t
+    mtp.LIBMTP_DATATYPE_INT8 = 0;
+    mtp.LIBMTP_DATATYPE_UINT8 = 1;
+    mtp.LIBMTP_DATATYPE_INT16 = 2;
+    mtp.LIBMTP_DATATYPE_UINT16 = 3;
+    mtp.LIBMTP_DATATYPE_INT32 = 4;
+    mtp.LIBMTP_DATATYPE_UINT32 = 5;
+    mtp.LIBMTP_DATATYPE_INT64 = 6;
+    mtp.LIBMTP_DATATYPE_UINT64 = 7;
+
+    // LIBMTP_event_t
+    mtp.LIBMTP_EVENT_NONE = 0;
+    mtp.LIBMTP_EVENT_STORE_ADDED = 1;
+    mtp.LIBMTP_EVENT_STORE_REMOVED = 2;
+    mtp.LIBMTP_EVENT_OBJECT_ADDED = 3;
+    mtp.LIBMTP_EVENT_OBJECT_REMOVED = 4;
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Index</a></h2>
+</nav>
+
+<br clear="both">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-alpha5</a> on Sat Jul 05 2014 20:34:46 GMT+0300 (EEST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

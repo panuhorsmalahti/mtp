@@ -1,5 +1,5 @@
 /*jslint node:true */
-"use strict";
+'use strict';
 var mtp = require('../index.js');
 var ref = require('ref');
 
