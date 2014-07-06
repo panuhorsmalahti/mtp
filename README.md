@@ -10,7 +10,7 @@ You can find examples in the [test/](https://github.com/panuhorsmalahti/mtp/tree
 Asynchronous calls
 ==================
 
-All function calls can be called asynchronously by using the .async() method. See [async.js example](https://github.com/panuhorsmalahti/mtp/blob/master/test/detect.js).
+All functions can be called asynchronously by using the .async() method. See [async.js example](https://github.com/panuhorsmalahti/mtp/blob/master/test/detect.js).
 
 ```
 mtp.LIBMTP_Detect_Raw_Devices.async(rawdevices, numrawdevices, function (err, res) {
