@@ -24,4 +24,4 @@ Mac OS X support
 libmpt must be installed with [Homebrew](http://brew.sh/):
 ```
 brew install libmtp
-``
+```

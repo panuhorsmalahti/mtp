@@ -174,7 +174,7 @@ switch (err) {
                 };
 
                 files = mtp.LIBMTP_Get_Filelisting_With_Callback(openDevice, progressFunc, null);
-                while (files) {
+                /* while (files) {
                     var file = files.deref();
                     if (file.filename === 'WMPInfo.xml' ||
                         file.filename === 'WMPinfo.xml' ||
@@ -184,7 +184,7 @@ switch (err) {
                         }
                     }
                     files = file.next;
-                }
+                } */
 
                 // Release device
                 mtp.LIBMTP_Release_Device(openDevice);
