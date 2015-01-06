@@ -17,3 +17,11 @@ mtp.LIBMTP_Detect_Raw_Devices.async(rawdevices, numrawdevices, function (err, re
 
 });
 ``` 
+
+Mac OS X support
+================
+
+libmpt must be installed with [Homebrew](http://brew.sh/):
+```
+brew install libmtp
+``
