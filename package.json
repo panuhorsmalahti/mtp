@@ -21,13 +21,13 @@
     "media transfer protocol"
   ],
   "dependencies": {
-    "ffi": "~1.2.6",
-    "ref": "~0.3.2",
-    "ref-struct": "~0.0.6"
+    "ffi": "~1.2.7",
+    "ref": "~0.3.3",
+    "ref-struct": "~1.0.0"
   },
   "analyze": true,
   "devDependencies": {
-    "gulp": "~3.8.5",
+    "gulp": "~3.8.10",
     "gulp-jsdoc": "~0.1.4"
   },
   "license": "MIT",
